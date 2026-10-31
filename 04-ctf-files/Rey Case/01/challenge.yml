@@ -1,0 +1,30 @@
+name: "Newest Trace"
+category: OSINT
+description: |
+  Event rule: Use public security reporting only. Never visit leak sites or search for credentials. Some reports about this case contain personal details about a private individual. Do not search for, record, or submit them. Every flag is an alias, group, tool, or date. Treat allegations as allegations; detention is not a conviction.
+
+  Flag format: Spark{lowercase_with_underscores}
+
+  An October 2026 report says an alleged extortion-group administrator was detained in a Middle Eastern country and is reportedly cooperating with the FBI. Find the public handle and the country. Treat everything as allegations.
+
+type: dynamic
+extra:
+    initial: 500
+    decay: 15
+    minimum: 100
+    function: logarithmic
+flags:
+    - { type: "static", content: "Spark{rey_jordan}", data: "case_insensitive" }
+hints:
+    - { content: "Search the article for the public handle, not a real identity.", cost: 10 }
+    - { content: "The country is named in the headline and body.", cost: 20 }
+# wrong-attempt limit (0 = unlimited)
+attempts: 0
+state: visible
+requirements:
+    - "Warmup01"
+    - "Warmup02"
+    - "Warmup03"
+    - "Warmup04"
+    - "Warmup05"
+version: "0.1"

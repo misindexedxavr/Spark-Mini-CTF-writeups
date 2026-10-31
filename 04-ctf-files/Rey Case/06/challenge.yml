@@ -1,0 +1,35 @@
+name: "Case Closed"
+category: OSINT
+description: |
+  Event rule: Use public security reporting only. Never visit leak sites or search for credentials. Some reports about this case contain personal details about a private individual. Do not search for, record, or submit them. Every flag is an alias, group, tool, or date. Treat allegations as allegations; detention is not a conviction.
+
+  Flag format: Spark{original_name}
+
+  According to the report from challenge 2, Hellcat first operated under a different name. Find the group's original name.
+
+type: dynamic
+extra:
+    initial: 500
+    decay: 15
+    minimum: 100
+    function: logarithmic
+flags:
+    - { type: "static", content: "Spark{ica_group}", data: "case_insensitive" }
+hints:
+    - { content: "Use the same report as challenge 2 and look for the group's earlier name.", cost: 10 }
+    - { content: "The name ends with the word group.", cost: 20 }
+# wrong-attempt limit (0 = unlimited)
+attempts: 0
+requirements:
+    - "Warmup01"
+    - "Warmup02"
+    - "Warmup03"
+    - "Warmup04"
+    - "Warmup05"
+    - "Newest Trace"
+    - "The Co-Founder"
+    - "Group to Victim"
+    - "One Banner, Three Names"
+    - "Alias Archaeology"
+state: visible
+version: "0.1"

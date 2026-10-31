@@ -1,0 +1,33 @@
+name: "One Banner, Three Names"
+category: OSINT
+description: |
+  Event rule: Use public security reporting only. Never visit leak sites or search for credentials. Some reports about this case contain personal details about a private individual. Do not search for, record, or submit them. Every flag is an alias, group, tool, or date. Treat allegations as allegations; detention is not a conviction.
+
+  Flag format: Spark{group_name}
+
+  In November 2025, a journalist described a Telegram group named after three well-known threat-actor brands. Find the full name of this group. Replace spaces with underscores and leave out the `$` symbol.
+
+type: dynamic
+extra:
+    initial: 500
+    decay: 15
+    minimum: 100
+    function: logarithmic
+flags:
+    - { type: "static", content: "Spark{scattered_lapsus_hunters}", data: "case_insensitive" }
+hints:
+    - { content: "Check the title of the article for the group's name.", cost: 10 }
+    - { content: "The name combines Scattered Spider, LAPSUS$, and ShinyHunters.", cost: 20 }
+# wrong-attempt limit (0 = unlimited)
+attempts: 0
+requirements:
+    - "Warmup01"
+    - "Warmup02"
+    - "Warmup03"
+    - "Warmup04"
+    - "Warmup05"
+    - "Newest Trace"
+    - "The Co-Founder"
+    - "Group to Victim"
+state: visible
+version: "0.1"

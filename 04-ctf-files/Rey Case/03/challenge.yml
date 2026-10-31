@@ -1,0 +1,32 @@
+name: "Group to Victim"
+category: OSINT
+description: |
+  Event rule: Use public security reporting only. Never visit leak sites or search for credentials. Some reports about this case contain personal details about a private individual. Do not search for, record, or submit them. Every flag is an alias, group, tool, or date. Treat allegations as allegations; detention is not a conviction.
+
+  Flag format: Spark{lowercase_with_underscores}
+
+  That group claimed a European industrial-technology victim in November 2024. A separate report says the intrusion started from an employee machine infected with an infostealer. Give the victim and the stealer. Ignore stealers linked to the operators' own devices.
+
+type: dynamic
+extra:
+    initial: 500
+    decay: 15
+    minimum: 100
+    function: logarithmic
+flags:
+    - { type: "static", content: "Spark{schneider_electric_lumma}", data: "case_insensitive" }
+hints:
+    - { content: "Search the page title and the November 2024 date.", cost: 10 }
+    - { content: "The victim name appears in the headline; the tool name appears in the headline and technical section.", cost: 20 }
+# wrong-attempt limit (0 = unlimited)
+attempts: 0
+requirements:
+    - "Warmup01"
+    - "Warmup02"
+    - "Warmup03"
+    - "Warmup04"
+    - "Warmup05"
+    - "Newest Trace"
+    - "The Co-Founder"
+state: visible
+version: "0.1"

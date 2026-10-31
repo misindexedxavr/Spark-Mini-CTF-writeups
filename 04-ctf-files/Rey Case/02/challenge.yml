@@ -1,0 +1,31 @@
+name: "The Co-Founder"
+category: OSINT
+description: |
+  Event rule: Use public security reporting only. Never visit leak sites or search for credentials. Some reports about this case contain personal details about a private individual. Do not search for, record, or submit them. Every flag is an alias, group, tool, or date. Treat allegations as allegations; detention is not a conviction.
+
+  Flag format: Spark{lowercase_with_underscores}
+
+  That handle co-founded a ransomware group that surfaced in late 2024. A threat-intelligence firm published a report on it. Give the group name and the co-founder's alias.
+
+type: dynamic
+extra:
+    initial: 500
+    decay: 15
+    minimum: 100
+    function: logarithmic
+flags:
+    - { type: "static", content: "Spark{hellcat_pryx}", data: "case_insensitive" }
+hints:
+    - { content: "Search the page title for the two public aliases.", cost: 10 }
+    - { content: "Use the alias after `and` in the title.", cost: 20 }
+# wrong-attempt limit (0 = unlimited)
+attempts: 0
+requirements:
+    - "Warmup01"
+    - "Warmup02"
+    - "Warmup03"
+    - "Warmup04"
+    - "Warmup05"
+    - "Newest Trace"
+state: visible
+version: "0.1"
